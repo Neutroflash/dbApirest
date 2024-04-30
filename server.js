@@ -8,11 +8,7 @@ const j02Routes = require('./src/postgres/routes/j02_routes');
 const app = express();
 const port = 3000;
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  optionsSuccessStatus: 200, 
-}));
-
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {

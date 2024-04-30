@@ -6,7 +6,7 @@ const getJ04 = (req, res) => {
     let query = queries.getJ04;
 
     if (start && end) {
-        query += ` WHERE j04 ${start} AND ${end}`;
+        query += ` WHERE j04 BETWEEN ${start} AND ${end}`;
     }
 
     if (orderBy) {
@@ -28,6 +28,7 @@ const getJ04 = (req, res) => {
         res.status(200).json(results.rows);
     });
 };
+
 
 const getJ04ById = (req, res) => {
     const id = parseInt(req.params.id);

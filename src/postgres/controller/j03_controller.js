@@ -29,6 +29,7 @@ const getJ03 = (req, res) => {
     });
 };
 
+
 const getJ03ById = (req, res) => {
     const id = req.params.id;
     pool.query(queries.getJ03ById, [id], (error, results) => {

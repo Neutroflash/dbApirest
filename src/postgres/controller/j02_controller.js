@@ -29,6 +29,7 @@ const getJ02 = (req, res) => {
     });
 };
 
+
 const getJ02ById = (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(queries.getJ02ById, [id], (error, results) => {
@@ -111,18 +112,19 @@ const removeJ02 = (req, res) => {
     pool.query(queries.getJ02ById, [id], (error, results) => {
         const noJ02Found = !results.rows.length;
         if (noJ02Found) {
-            res.send("This doesn't exitst in the database, could not remove");
+            res.send("This doesn't exist in the database, could not remove");
+            return;
         }
 
         pool.query(queries.removeJ02, [id], (error, results) => {
-            if (error) throw error
-            res.status(200).send("J02 data removed successfully")
-        })
+            if (error) throw error;
+            res.status(200).send("J02 data removed successfully");
+        });
     });
 };
 
 const updateJ02 = (req, res) => {
-    const id = parseInt(req.params.id)
+    const id = parseInt(req.params.id);
     const {
         j2num,
         j2dat,
@@ -149,46 +151,54 @@ const updateJ02 = (req, res) => {
         j2_dat_inc_1,
         j2_dat_inc_2,
         j2_dat_pag_contr,
-        previs } = req.body
+        previs
+    } = req.body;
 
     pool.query(queries.getJ02ById, [id], (error, results) => {
-        const noJ02Found = !results.rows.length
+        const noJ02Found = !results.rows.length;
         if (noJ02Found) {
-            res.send("The data doesn't exits in the database")
+            res.send("The data doesn't exist in the database");
+            return;
         }
 
-        pool.query(queries.updateJ02, [
-            j2num,
-            j2dat,
-            j01,
-            j03,
-            j04,
-            j2preset,
-            j2imp,
-            j2pcnpaia,
-            j2cnpaia,
-            j2impiva,
-            j2piva,
-            j2iva,
-            j2tot,
-            j2note,
-            j2_data_saldo,
-            pag_saldo,
-            j2_incas_1,
-            j2_incas_2,
-            j2_incas_3,
-            j2_incassato,
-            j2_da_incassare,
-            ordid,
-            j2_dat_inc_1,
-            j2_dat_inc_2,
-            j2_dat_pag_contr,
-            previs, id], (error, results) => {
-                if (error) throw error
-                res.status(200).send("J02 data updated successfully")
-            })
-    })
-}
+        pool.query(
+            queries.updateJ02,
+            [
+                j2num,
+                j2dat,
+                j01,
+                j03,
+                j04,
+                j2preset,
+                j2imp,
+                j2pcnpaia,
+                j2cnpaia,
+                j2impiva,
+                j2piva,
+                j2iva,
+                j2tot,
+                j2note,
+                j2_data_saldo,
+                pag_saldo,
+                j2_incas_1,
+                j2_incas_2,
+                j2_incas_3,
+                j2_incassato,
+                j2_da_incassare,
+                ordid,
+                j2_dat_inc_1,
+                j2_dat_inc_2,
+                j2_dat_pag_contr,
+                previs,
+                id
+            ],
+            (error, results) => {
+                if (error) throw error;
+                res.status(200).send("J02 data updated successfully");
+            }
+        );
+    });
+};
 
 module.exports = {
     getJ02,
