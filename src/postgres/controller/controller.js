@@ -74,29 +74,34 @@ const addPostgres = (req, res) => {
     j1_av_data,
   } = req.body;
 
+  // Verificar que los campos obligatorios no estén vacíos
+  if (!j01 || !j04 || !j03) {
+    return res.status(400).json({ error: "Los campos j01, j04 y j03 son obligatorios" });
+  }
+
   pool.query(
     queries.addPostgres,
     [
       j01,
       j03,
       j04,
-      j1impiva,
-      j1rif_offer,
-      j1rif_client,
-      j1dat,
-      j1titol,
-      j1note,
-      j1fat_1,
-      j1fat_1_rif,
-      j1fat_2,
-      j1fat_2_rif,
-      j1fat_3,
-      j1fat_3_rif,
-      j1tot_fat,
-      sel,
-      link_ordine,
-      j1_avanz,
-      j1_av_data,
+      j1impiva || null,
+      j1rif_offer || null,
+      j1rif_client || null,
+      j1dat || null,
+      j1titol || null,
+      j1note || null,
+      j1fat_1 || null,
+      j1fat_1_rif || null,
+      j1fat_2 || null,
+      j1fat_2_rif || null,
+      j1fat_3 || null,
+      j1fat_3_rif || null,
+      j1tot_fat || null,
+      sel || null,
+      link_ordine || null,
+      j1_avanz || null,
+      j1_av_data || null,
     ],
     (error, results) => {
       if (error) {
@@ -108,6 +113,7 @@ const addPostgres = (req, res) => {
     }
   );
 };
+
 
 const removePostgres = (req, res) => {
   const id = parseInt(req.params.id);

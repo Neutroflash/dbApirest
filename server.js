@@ -8,7 +8,11 @@ const j02Routes = require('./src/postgres/routes/j02_routes');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: '*', // Permitir solicitudes desde cualquier origen
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permitir estos métodos HTTP
+  allowedHeaders: ['Content-Type', 'Authorization'], // Permitir estas cabeceras
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
