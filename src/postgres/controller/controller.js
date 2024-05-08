@@ -75,7 +75,7 @@ const addPostgres = (req, res) => {
   } = req.body;
 
   // Verificar que los campos obligatorios no estén vacíos
-  if (!j01 || !j04 || !j03) {
+  if (!j04 || !j03) {
     return res.status(400).json({ error: "Los campos j01, j04 y j03 son obligatorios" });
   }
 
