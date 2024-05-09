@@ -59,14 +59,14 @@ const addJ04 = (req, res) => {
     [
       j04,
       j03,
-      cartnomold,
-      cartref,
-      cartrif,
-      cartcoord,
-      cartpag,
-      cartdescr,
-      cartdata,
-      cartnote,
+      cartnomold || null,
+      cartref || null,
+      cartrif || null,
+      cartcoord || null,
+      cartpag || null,
+      cartdescr || null,
+      cartdata || null,
+      cartnote || null,
     ],
     (error, results) => {
       if (error) throw error;
