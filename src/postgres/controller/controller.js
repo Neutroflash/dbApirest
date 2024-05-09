@@ -109,7 +109,7 @@ const addPostgres = (req, res) => {
         res.status(500).send("Internal server error");
         return;
       }
-      res.status(201).send("New data for table j01 created!");
+      res.status(201).json({ message: "New data for table j01 created!" });
     }
   );
 };
