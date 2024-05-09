@@ -106,7 +106,7 @@ const addPostgres = (req, res) => {
     (error, results) => {
       if (error) {
         console.error("Error adding record:", error);
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).send("Internal server error");
         return;
       }
       res.status(201).send("New data for table j01 created!");
